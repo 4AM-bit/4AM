@@ -1,0 +1,6 @@
+{
+  "name": "4 AM — Minimarket Modern Jakarta & Aceh",
+  "description": "Belanja Praktis, Harga Bersahabat. Minimarket modern untuk kebutuhan harian dan produk UMKM lokal pilihan di Jakarta & Aceh.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
