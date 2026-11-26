@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Check, ShoppingBag } from 'lucide-react';
 import { CartDrawer } from './components/CartDrawer';
 import { CategoryStrip } from './components/CategoryStrip';
+import { ChatWidget } from './components/ChatWidget';
 import { CheckoutModal } from './components/CheckoutModal';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
@@ -302,12 +303,20 @@ export default function App() {
         onOrderSubmitted={handleOrderSubmitted}
       />
 
+      {/* Floating n8n-Integrated Chatbot Widget */}
+      <ChatWidget
+        branch={branch}
+        cart={cart}
+        subtotal={subtotal}
+        hidden={isCartOpen || isCheckoutOpen}
+      />
+
       {/* Subtle Bottom-Right Feedback Toast */}
       {toastMessage && (
         <div
           role="status"
           aria-live="polite"
-          className="fixed bottom-4 right-4 left-4 sm:left-auto z-40 sm:max-w-sm bg-[#1A1A1A] text-white px-4 py-3 rounded-xl border border-white/10 flex items-center justify-between gap-3"
+          className="fixed bottom-20 right-4 left-4 sm:left-auto z-40 sm:max-w-sm bg-[#1A1A1A] text-white px-4 py-3 rounded-xl border border-white/10 flex items-center justify-between gap-3"
         >
           <div className="flex items-center gap-2.5 min-w-0">
             <Check className="w-4 h-4 text-[#F5820D] shrink-0" aria-hidden="true" />
