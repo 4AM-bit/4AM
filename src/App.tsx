@@ -309,6 +309,8 @@ export default function App() {
         cart={cart}
         subtotal={subtotal}
         hidden={isCartOpen || isCheckoutOpen}
+        onAddProduct={handleAddToCart}
+        onOpenCheckout={handleQuickWhatsApp}
       />
 
       {/* Subtle Bottom-Right Feedback Toast */}

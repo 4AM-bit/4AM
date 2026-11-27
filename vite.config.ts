@@ -3,12 +3,27 @@ import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
 import {defineConfig} from 'vite';
+import chatHandler from './api/chat';
 
 export default defineConfig(() => {
   return {
     plugins: [
       react(),
       tailwindcss(),
+      // Mirrors Vercel's /api/chat serverless proxy in local/preview dev mode
+      // so browser requests to n8n never fail with CORS preflight errors.
+      {
+        name: 'n8n-chat-dev-proxy',
+        configureServer(server) {
+          server.middlewares.use('/api/chat', (req, res, next) => {
+            if (req.method !== 'POST' && req.method !== 'OPTIONS') {
+              next();
+              return;
+            }
+            void chatHandler(req, res).catch(next);
+          });
+        },
+      },
       // Copies src/assets into dist/ so root-relative URLs like
       // "/src/assets/images/..." (e.g. generate_image output) still resolve
       // in production builds. Do not remove.
